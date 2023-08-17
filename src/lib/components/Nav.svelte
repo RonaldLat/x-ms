@@ -1,4 +1,4 @@
-<script>
+mi<script>
     import { onMount } from "svelte";
     import { Avatar } from "flowbite-svelte";
     import { goto } from "$app/navigation";
@@ -22,7 +22,7 @@
     const getImg = async () => {
         const { data } = supabase.storage
             .from("dms_users")
-            .getPublicUrl($currentUser.id +'.jpg');
+            .getPublicUrl($currentUser.id +'.png');
         avatarUrl = data.publicUrl;
     };
     getImg();
