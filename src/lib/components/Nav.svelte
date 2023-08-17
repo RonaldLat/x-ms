@@ -22,7 +22,7 @@
     const getImg = async () => {
         const { data } = supabase.storage
             .from("dms_users")
-            .getPublicUrl($currentUser.id +'.png');
+            .getPublicUrl($currentUser.id +'.jpg');
         avatarUrl = data.publicUrl;
     };
     getImg();
