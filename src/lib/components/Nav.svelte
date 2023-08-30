@@ -61,7 +61,7 @@
         >
     {/if}
     {#if $currentUser}
-        <Button pill color="light" id="avatar_with_name" class="py-2  bg-violet-500 text-gray-100" >
+        <Button pill color="light" id="avatar_with_name" class="py-2  bg-violet-500 text-gray-100 z-[20000]" >
             <Avatar
                 src="https://w7.pngwing.com/pngs/78/788/png-transparent-computer-icons-avatar-business-computer-software-user-avatar-child-face-hand-thumbnail.png"
                 class="mr-2"
