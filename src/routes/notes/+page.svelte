@@ -8,7 +8,7 @@
         let { data, error } = await supabase
             .from("notes")
             .select()
-            .eq('authorID', $currentUser.id)
+            .eq('authorID', $currentUser.id).order('created_at', { ascending: false })
         $notes = data;
         console.log("error", error);
         console.log("data", data);
