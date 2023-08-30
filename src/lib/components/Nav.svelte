@@ -50,7 +50,7 @@
     getImg();
 </script>
 
-<nav class=" p-4 flex justify-between z-50">
+<nav class=" p-4 flex justify-between z-[10000]">
     <ul class="flex flex-col space-x-4" />
     {#if !$currentUser}
         <button
