@@ -93,18 +93,18 @@
         <span class="mb-2 text-gray-900">Or</span>
         <form on:submit|preventDefault={signIn} >
             <input
-        bind:value={credentials.email}
+                bind:value={credentials.email}
                 type="text"
                 class="w-full px-6 py-3 mb-2 border border-slate-600 rounded-lg font-medium"
                 placeholder="Email"
-                value=""
+
             />
             <input
 bind:value={credentials.password}
                 type="password"
                 class="w-full px-6 py-3 mb-2 border border-slate-600 rounded-lg font-medium"
                 placeholder="Password"
-                value=""
+
             />
             <button
 type="submit"
