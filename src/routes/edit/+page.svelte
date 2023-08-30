@@ -1,36 +1,31 @@
 <script>
     import { supabase } from "$lib/supabaseClient.js";
     import { currentUser } from "$lib/store/authState.js";
+    import { currentNote } from "$lib/store/currentNote.js";
 
-    const noteDetails = {
-        title: "",
-        note: "",
+    const updatedData = {
+        noteTitle: $currentNote.noteTitle,
+        note: $currentNote.note
     };
 
-    const createNote = async () => {
+    const editNote = async () => {
         const { data, error } = await supabase
             .from("notes")
-            .insert([
-                {
-                    authorID: $currentUser.id,
-                    authorEmail: $currentUser.email,
-                    noteTitle: noteDetails.title,
-                    note: noteDetails.note,
-                },
-            ])
+            .update(updatedData)
+            .eq("id", $currentNote.id)
             .select();
-            noteDetails.title =''
-            noteDetails.note =''
-            console.log('error', error)
-            console.log('data', data)
+        console.log("error", error);
+        console.log("data", data);
     };
+
     console.log($currentUser);
+    console.log($currentNote);
 </script>
 
-<form class="flex-col gap-5 w-4/5 mx-auto mt-64 pt-6 -z-10" on:submit={createNote}>
+<form class="flex-col gap-5 w-4/5 mx-auto mt-5" on:submit={editNote}>
     <div class="relative mb-3">
         <input
-            bind:value={noteDetails.title}
+            bind:value={updatedData.noteTitle}
             id="title"
             type="text"
             name="title"
@@ -48,7 +43,7 @@
 
     <div class="relative mb-3">
         <textarea
-            bind:value={noteDetails.note}
+            bind:value={updatedData.note}
             name="email"
             class="text-gray-dark border-2 peer block w-full appearance-none rounded-sm border-gray-400 px-0 py-[14px] pl-6 text-sm focus:border-gray-800 focus:outline-none focus:ring-0"
             placeholder=" "
