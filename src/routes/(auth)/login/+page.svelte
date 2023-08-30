@@ -1,3 +1,32 @@
+<script>
+	import { goto } from '$app/navigation';
+	import { supabase } from '$lib/supabaseClient.js';
+	import { sineIn } from 'svelte/easing';
+	import { currentUser } from '$lib/store/authState.js';
+
+	let credentials = {
+		email: '',
+		password: ''
+	};
+    let loginError =false
+	async function signIn() {
+		const { data, error } = await supabase.auth.signInWithPassword(credentials);
+        console.log('sign in data: ', data)
+        credentials.email =''
+        credentials.password =''
+        if($currentUser){goto('/')}
+        if(error){
+            console.log('sign in error: ', error)
+            loginError =true
+            }
+
+	}
+    const navigateTo=()=>{
+            goto('/signup')
+        }
+
+</script>
+
 <div class="max-w-[280px] mx-auto">
     <div class="flex flex-col items-center mt-[10vh]">
         <h2 class="mb-5 text-gray-900 font-mono font-bold text-xl">Login</h2>
@@ -62,14 +91,16 @@
             <span class="text-gray-700 font-medium">Continue with Google</span>
         </button>
         <span class="mb-2 text-gray-900">Or</span>
-        <form>
+        <form on:submit|preventDefault={signIn} >
             <input
+        bind:value={credentials.email}
                 type="text"
                 class="w-full px-6 py-3 mb-2 border border-slate-600 rounded-lg font-medium"
                 placeholder="Email"
                 value=""
             />
             <input
+bind:value={credentials.password}
                 type="password"
                 class="w-full px-6 py-3 mb-2 border border-slate-600 rounded-lg font-medium"
                 placeholder="Password"
