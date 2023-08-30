@@ -14,7 +14,7 @@
         console.log('sign in data: ', data)
         credentials.email =''
         credentials.password =''
-        if($currentUser){goto('/')}
+        if(data){goto('/notes')}
         if(error){
             console.log('sign in error: ', error)
             loginError =true
@@ -107,6 +107,7 @@ bind:value={credentials.password}
                 value=""
             />
             <button
+type="submit"
                 class="bg-slate-500 hover:bg-slate-700 text-white text-base rounded-lg py-2.5 px-5 transition-colors w-full text-[19px]"
                 >Login</button
             >
